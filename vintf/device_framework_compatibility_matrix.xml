@@ -1,0 +1,27 @@
+<!--
+    SPDX-FileCopyrightText: The LineageOS Project
+    SPDX-License-Identifier: Apache-2.0
+
+    Device-specific HALs that only exist on pista.
+
+    Dolby DVS HAL ships as prebuilt in vendor/realme/pista but is not declared
+    in any framework compatibility matrix, causing check_vintf to fail with:
+
+        files are incompatible: The following instances are in the device manifest
+        but not specified in framework compatibility matrix:
+            vendor.dolby.dvs.IDvs/default (@1)
+
+    Hence this fragment, hooked up via DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE
+    in device.mk. optional="true" matches how hardware/oplus/vintf/
+    device_framework_matrix.xml declares the rest of the OPPO HALs.
+-->
+<compatibility-matrix version="4.0" type="framework">
+    <hal format="aidl" optional="true">
+        <name>vendor.dolby.dvs</name>
+        <version>1</version>
+        <interface>
+            <name>IDvs</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+</compatibility-matrix>

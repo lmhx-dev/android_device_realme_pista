@@ -85,3 +85,10 @@ $(call inherit-product, device/oneplus/sm8750-common/common.mk)
 
 # Inherit from the proprietary files makefile.
 $(call inherit-product, vendor/realme/pista/pista-vendor.mk)
+
+# VINTF
+# Same form as device/oneplus/sm8750-common/common.mk uses for hardware/oplus.
+# consumes DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE on its own and $(LOCAL_PATH)
+# is not expanded there, which yields "/vintf/device_framework_compatibility_matrix.xml"
+DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
+    device/realme/pista/vintf/device_framework_compatibility_matrix.xml
